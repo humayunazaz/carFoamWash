@@ -1,0 +1,14 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<app-header></app-header>
+<div class="main">
+  <router-outlet></router-outlet>
+  <div class="toastyHere {{toasty.class}}" *ngIf="toasty">
+    <div class="toastyContent">
+      <div class="closeToasty" (click)="cancelToasty()">
+        <i class="fa fa-times"></i>
+      </div>
+      <p>{{toasty.message}}</p>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

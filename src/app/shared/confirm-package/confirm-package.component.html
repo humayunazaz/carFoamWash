@@ -1,0 +1,28 @@
+<div ngbModalContainer>
+    <div class="modal-body">
+        <h1 class="text-center">Confirm Package</h1>
+        <div class="row">
+            <div class="col-12 form-group" [ngClass]="{'has-error': errors }">
+                <label for="car">Vehicle type</label>
+                <select name="car" [(ngModel)]="car" class="form-control c-theme" id="car" name="cityName" (ngModelChange)="updateAmount($event)">
+                    <option value="">Select vehicle type</option>
+                    <option value="small">Small Car</option>
+                    <option value="sedan">Medium Sedan</option>
+                    <option value="suv">SUV</option>
+                </select>
+                <div *ngIf="errors" class="validation-error-text">
+                    Vehicle type is required.
+                </div>
+            </div>
+            <div class="col-12">
+                <h3>Total amount {{totalAmount}}.</h3>
+            </div>
+        </div>
+        <p>You selected {{selectedPackage.title}} package. Your plan include {{selectedPackage.wash}} wash per month and plan fees will be collected on first wash.</p>
+        <p>Your plan will expire on {{renewalDate | date}}.</p>
+        <div class="custButtons text-center">
+          <button class="btn btn-success lg" (click)="confirm()">Confirm</button>
+          <button class="btn btn-primary lg" (click)="cancel()">Close</button>
+        </div>
+    </div>
+</div>

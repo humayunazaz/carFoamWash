@@ -1,0 +1,146 @@
+<section id="settings" class="bar no-mb" [class.bg-gray]="backGray">
+  <div data-animate="fadeInUp" class="container">
+    <div class="row">
+      <div class="col-6 settingsFoam">
+        <div class="heading text-center">
+          <h2>Settings</h2>
+        </div>
+        <form #joinForm="ngForm" (ngSubmit)="onSubmit(joinForm)">
+          <div class="row form-group">
+            <div class="col-6 form-group" [ngClass]="{'has-error': firstName.errors && (firstName.touched || firstName.dirty) }">
+              <label>First Name</label>
+              <input 
+                  [(ngModel)]="about.first" 
+                  class="form-control" 
+                  type="text" 
+                  name="firstName" 
+                  #firstName="ngModel"
+                  required 
+              />
+              <div *ngIf="firstName.errors && (firstName.touched || firstName.dirty)" class="validation-error-text">
+                  Valid first name is required.
+              </div>
+            </div>
+            <div class="col-6 form-group" [ngClass]="{'has-error': lastName.errors && (lastName.touched || lastName.dirty)  }">
+              <label>Last Name</label>
+              <input 
+                  [(ngModel)]="about.last" 
+                  class="form-control" 
+                  type="text" 
+                  name="lastName" 
+                  #lastName="ngModel"
+                  required
+              />
+              <div *ngIf="lastName.errors && (lastName.touched || lastName.dirty)" class="validation-error-text">
+                  Valid last name is required.
+              </div>
+            </div>
+            <div class="col-6 form-group" [ngClass]="{'has-error': phoneNumber.errors && (phoneNumber.touched || phoneNumber.dirty) }">
+              <label>Phone</label>
+              <input 
+                  [(ngModel)]="about.phone" 
+                  class="form-control" 
+                  type="number" 
+                  name="phoneNumber" 
+                  #phoneNumber="ngModel"
+                  required
+              />
+              <div *ngIf="phoneNumber.errors && (phoneNumber.touched || phoneNumber.dirty)" class="validation-error-text">
+                  Valid phone number is required.
+              </div>
+            </div>
+            <div class="col-6 form-group" [ngClass]="{'has-error': cityName.errors && (cityName.touched || cityName.dirty) }">
+              <label for="city">City</label>
+              <select name="city" [(ngModel)]="about.city" class="form-control c-theme" id="city" name="cityName" #cityName="ngModel" required>
+                  <option value="">Select City</option>
+                  <option value="lahore">Lahore</option>
+              </select>
+              <div *ngIf="cityName.errors && (cityName.touched || cityName.dirty)" class="validation-error-text">
+                  City is required.
+              </div>
+            </div>
+            <div class="col-6 form-group" [ngClass]="{'has-error': yourArea.errors && (yourArea.touched || yourArea.dirty) }">
+              <label for="yourArea">Area</label>
+              <select name="yourArea" [(ngModel)]="about.area" class="form-control c-theme" id="yourArea" name="yourArea" #yourArea="ngModel" required>
+                <option value="">Select Your Area</option>
+                <option value="bahria">Bahria</option>
+                <option value="orchard">Bahria Orchard</option>
+                <option value="canalGraden">Canal Garden</option>
+                <option value="sukh">Sukh Chain</option>
+                <option value="lake">Lake City</option>
+              </select>
+              <div *ngIf="yourArea.errors && (yourArea.touched || yourArea.dirty)" class="validation-error-text">
+                Area is required.
+              </div>
+            </div>
+            <div class="col-12 form-group" [ngClass]="{'has-error': addressLine.errors && (addressLine.touched || addressLine.dirty) }">
+              <label for="address">Address</label>
+              <input type="text"
+                  name="addressLine"
+                  id="address"
+                  class="form-control"
+                  #addressLine="ngModel"
+                  [(ngModel)]="about.address"
+                  placeholder="Address Line " 
+                  required
+              />
+              <div *ngIf="addressLine.errors && (addressLine.touched || addressLine.dirty)" class="validation-error-text">
+                  Address is required.
+              </div>
+            </div>
+          </div>
+    
+          <div class="login-btn-wrapper">
+            <button class="btn btn-primary btn-lg" type="submit" [disabled]="!joinForm.valid">
+                Update
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="col-6 updatePassword">
+        <div class="heading text-center">
+          <h2>Update Password</h2>
+        </div>
+        <form #passForm="ngForm" (ngSubmit)="updatePassword(passForm)">
+          <div class="row">
+            <div class="col-12 form-group">
+              <label>
+                Current Password
+              </label>
+              <input 
+                [(ngModel)]="currentPassword" 
+                class="form-control" 
+                type="password"  
+                name="pass" 
+                autocomplete="off"
+                #pass="ngModel"
+                required
+              >
+            </div>
+            <div class="col-12 form-group">
+              <label>
+                New Password
+              </label>
+              <input 
+                [(ngModel)]="newPassword" 
+                class="form-control" 
+                type="password"  
+                name="newPass" 
+                autocomplete="off"
+                #pass="ngModel"
+                required
+              >
+            </div>
+            <div class="login-btn-wrapper col-12">
+              <button class="btn btn-primary btn-lg" type="submit" [disabled]="!passForm.valid">
+                Update password
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+

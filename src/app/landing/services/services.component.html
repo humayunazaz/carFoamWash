@@ -1,0 +1,23 @@
+<section id="services" class="bar no-mb bg-gray">
+  <div class="container">
+    <div class="heading text-center">
+      <h3>What include in our service</h3>
+    </div>
+    <div class="row portfolio text-center no-space">
+      <div class="col-md-4" *ngFor="let item of items">
+        <div class="box-image">
+          <div class="image"><img src="{{item.img}}" alt="" class="img-fluid">
+            <div class="overlay d-flex align-items-center justify-content-center">
+              <div class="content">
+                <div class="name">
+                  <h3><a class="color-white">{{item.lable}}</a></h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+  

@@ -1,0 +1,94 @@
+<section id="packages" class="bar no-mb scheduleWash" [class.bg-gray]="backGray">
+    <div data-animate="fadeInUp" class="container">
+      <div class="row">
+        <div class="col-12" *ngIf="userPackage != null">
+            <div class="heading text-center">
+              <h2>Schedule your wash</h2>
+            </div>
+            <div class="schedule-content">
+              <div class="userSchedule">
+                <div class="row">
+                  <div class="col-6 wash">
+                    <h3>Available Complete (interior & exterior) wash: <b>{{userPackage.remainingInterior}}</b></h3>
+                  </div>
+                  <div class="col-6 wash">
+                    <h3>Available exterior wash: <b>{{userPackage.remainingExterior}}</b></h3>
+                  </div>
+                  <div class="col-12 pendingWash" *ngIf="pendingWash">
+                    <p>Your wash is successfully schedule. To change it, you need to first cancel it and than re-schedule it.</p>
+                  </div>
+                  <div class="col-6 form-group">
+                    <label for="washType">Wash Type</label>
+                    <select name="wash" [ngModel]="washType" class="form-control c-theme" id="wash" name="wash" (ngModelChange)="updateWashType($event)" [ngClass]="{disabled: pendingWash != null}">
+                      <option value="">Select Wash Type</option>
+                      <option value="interior" *ngIf="userPackage.remainingInterior > 0">Complete (Interior & Exterior)</option>
+                      <option value="exterior">Exterior</option>
+                    </select>
+                  </div>
+                  <div class="col-6 form-group">
+                    <label>Wash Date</label>
+                    <input id="event-date" type="text" class="form-control" name="event-date" [minDate]="minDate" [maxDate]="maxDate" [(ngModel)]="washDate" ngbDatepicker #startDate="ngbDatepicker" (focus)="startDate.toggle()" (ngModelChange)="saveTheDate()" readonly [ngClass]="{disabled: pendingWash != null}">
+                  </div>
+                  <div class="col-6 form-group" *ngIf="washTimeSet && pendingWash == null">
+                    <label for="washTime">Wash Time</label>
+                    <select name="wash" [(ngModel)]="selectedTime" class="form-control c-theme" id="wash" name="wash">
+                      <option value="">Select Wash Time</option>
+                      <option *ngFor="let time of washTimes" value="{{time.slot}}" [disabled]="time.booking === timeSlotLimit">{{time.slot}}</option>
+                    </select>
+                  </div>
+                  <div class="col-6 form-group" *ngIf="pendingWash">
+                    <label>Wash Time</label>
+                    <input 
+                      [(ngModel)]="selectedTime" 
+                      class="form-control disabled" 
+                      type="text" 
+                      name="selectedTime" 
+                    />
+                  </div>
+                  <div class="col-6 form-group" *ngIf="userAbout != undefined">
+                    <label>Contact Number</label>
+                    <input 
+                      [(ngModel)]="userAbout.phone" 
+                      class="form-control" 
+                      type="text" 
+                      name="phone"
+                      [ngClass]="{disabled: pendingWash != null}" 
+                    />
+                  </div>
+                  <div class="col-12 form-group" *ngIf="userAbout != undefined">
+                    <label for="address">Address</label>
+                    <input type="text"
+                      name="address"
+                      id="address"
+                      class="form-control"
+                      [(ngModel)]="userAbout.address"
+                      placeholder="Address"
+                      [ngClass]="{disabled: pendingWash != null}" 
+                    />
+                  </div>
+                  <div class="col-12 validation-error-text text-center" *ngIf="errors">
+                    <p>Fill all the above fields.</p>
+                  </div>
+                  <div class="col-12 validation-error-text text-center" *ngIf="timeError">
+                    <p>{{timeErrorMessage}}</p>
+                  </div>
+                  <div class="col-12 login-btn-wrapper" *ngIf="pendingWash == null">
+                    <button class="btn btn-primary btn-lg" type="button" (click)="scheduleWash()">
+                      Schedule
+                    </button>
+                  </div>
+                  <div class="col-12 login-btn-wrapper" *ngIf="pendingWash">
+                    <button class="btn btn-primary btn-lg" type="button" (click)="cancelWash()">
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="userSchedule col-12" *ngIf="userPackage == null">
+          <app-packages></app-packages>
+        </div>
+      </div>
+    </div>
+</section>

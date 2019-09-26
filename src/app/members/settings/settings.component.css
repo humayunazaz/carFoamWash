@@ -1,0 +1,17 @@
+.settingsFoam{
+    margin: auto;
+}
+#settings{
+    min-height: 750px;
+}
+.login-btn-wrapper{
+    text-align: center;
+}
+@media (min-width:320px) and (max-width:567px) {
+    .settingsFoam, .updatePassword{
+        max-width: 100%;
+        width: 100%;
+        flex: 0 0 100%;
+        margin-bottom: 40px;
+    }
+}

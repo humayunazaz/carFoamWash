@@ -1,0 +1,9 @@
+.owl-carousel{
+    display: block;
+}
+.dark-mask.mask-primary{
+    background: rgba(218, 77, 77, 0.7);
+}
+.item h1{
+    margin-bottom: 100px;
+}

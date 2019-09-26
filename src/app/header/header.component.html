@@ -1,0 +1,30 @@
+<header class="nav-holder make-sticky" [class.sticky]="fixed">
+  <div id="navbar" role="navigation" class="navbar navbar-expand-lg">
+    <div class="container"><a class="navbar-brand home" routerLink="/"><img src="./assets/img/logo.png" alt="Universal logo" class="d-none d-md-inline-block"><span>CAR FOAM & WASH</span></a>
+      <button type="button" data-toggle="collapse" data-target="#navigation" class="navbar-toggler btn-template-outlined"><span class="sr-only">Toggle navigation</span><i class="fa fa-align-justify"></i></button>
+      <div id="navigation" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav ml-auto" *ngIf="!authenticated">
+          <li class="nav-item" *ngFor="let head of mainHeads" [class.active]="head.value == activeMenu">
+            <a (click)="slideTo(head)">{{head.title}}</a>
+          </li>
+          <li class="nav-item"><a (click)="routeTo('/join')">Join</a>
+          </li>
+          <li class="nav-item"><a (click)="login()">Login</a>
+          </li>
+          <!-- ========== Contact dropdown end ==================-->
+        </ul>
+        <ul class="nav navbar-nav ml-auto" *ngIf="authenticated">
+          <li class="nav-item"><a (click)="routeTo('/')">Home</a>
+          </li>
+          <li class="nav-item"><a (click)="routeTo('/members')">Members</a>
+          </li>
+          <li class="nav-item"><a (click)="routeTo('/members/settings')">Settings</a>
+          </li>
+          <li class="nav-item"><a (click)="logOut()">Logout</a>
+          </li>
+          <!-- ========== Contact dropdown end ==================-->
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>

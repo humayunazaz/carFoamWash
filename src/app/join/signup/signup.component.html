@@ -1,0 +1,150 @@
+<section class="join bar no-mb bg-gray">
+  <div class="container">
+    <h3>Join Car Foam & Wash</h3>
+    <form #joinForm="ngForm" (ngSubmit)="onSubmit(joinForm)">
+      <div [ngClass]="{'form-group': true, 'has-error': emailAddress.errors && (emailAddress.touched || emailAddress.dirty) }">
+          <label>
+              Email
+          </label>
+          <input 
+              class="form-control" 
+              type="text" 
+              [(ngModel)]="email"
+              ngModel 
+              required 
+              name="emailAddress"
+              #emailAddress="ngModel"
+              pattern="^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$"
+          >
+          <div *ngIf="emailAddress.errors && (emailAddress.touched || emailAddress.dirty)" class="validation-error-text">
+              Valid email is required.
+          </div>
+      </div>
+      <div [ngClass]="{'form-group': true, 'has-error': pass.errors && (pass.touched || pass.dirty) }" >
+          <label>
+              Password
+          </label>
+          <input 
+              [(ngModel)]="password" 
+              class="form-control" 
+              type="password"  
+              name="pass" 
+              autocomplete="off"
+              #pass="ngModel"
+              required
+          >
+          <div *ngIf="pass.errors && (pass.touched || pass.dirty)" class="validation-error-text">
+              Valid password is required.
+          </div>
+      </div>
+
+      <hr />
+
+      <div class="row form-group">
+          <div class="col-6 form-group" [ngClass]="{'has-error': firstName.errors && (firstName.touched || firstName.dirty) }">
+              <label>First Name</label>
+              <input 
+                  [(ngModel)]="first" 
+                  class="form-control" 
+                  type="text" 
+                  name="firstName" 
+                  #firstName="ngModel"
+                  required 
+              />
+              <div *ngIf="firstName.errors && (firstName.touched || firstName.dirty)" class="validation-error-text">
+                  Valid first name is required.
+              </div>
+          </div>
+          <div class="col-6 form-group" [ngClass]="{'has-error': lastName.errors && (lastName.touched || lastName.dirty)  }">
+              <label>Last Name</label>
+              <input 
+                  [(ngModel)]="last" 
+                  class="form-control" 
+                  type="text" 
+                  name="lastName" 
+                  #lastName="ngModel"
+                  required
+              />
+              <div *ngIf="lastName.errors && (lastName.touched || lastName.dirty)" class="validation-error-text">
+                  Valid last name is required.
+              </div>
+          </div>
+          <div class="col-6 form-group" [ngClass]="{'has-error': phone.errors && (phone.touched || phone.dirty) }">
+            <label>Phone</label>
+            <input 
+                [(ngModel)]="phoneNumber" 
+                class="form-control" 
+                type="number" 
+                name="phone" 
+                #phone="ngModel"
+                required
+            />
+            <div *ngIf="phone.errors && (phone.touched || phone.dirty)" class="validation-error-text">
+                Valid phone number is required.
+            </div>
+        </div>
+        <div class="col-6 form-group" [ngClass]="{'has-error': cityName.errors && (cityName.touched || cityName.dirty) }">
+            <label for="city">City</label>
+            <select name="city" [(ngModel)]="city" class="form-control c-theme" id="city" name="cityName" #cityName="ngModel" required>
+                <option value="">Select City</option>
+                <option value="lahore">Lahore</option>
+                <!-- <option value="islamabad">Islamabad</option>
+                <option value="karachi">Karachi</option>
+                <option value="rawalpindi">Rawalpindi</option>
+                <option value="faisalabad">Faisalabad</option> -->
+            </select>
+            <div *ngIf="cityName.errors && (cityName.touched || cityName.dirty)" class="validation-error-text">
+                City is required.
+            </div>
+        </div>
+        <div class="col-6 form-group" [ngClass]="{'has-error': yourArea.errors && (yourArea.touched || yourArea.dirty) }">
+            <label for="yourArea">Area</label>
+            <select name="yourArea" [(ngModel)]="selectedArea" class="form-control c-theme" id="yourArea" name="yourArea" #yourArea="ngModel" required>
+                <option value="">Select Your Area</option>
+                <option value="bahria">Bahria</option>
+                <option value="orchard">Bahria Orchard</option>
+                <option value="canalGraden">Canal Garden</option>
+                <option value="sukh">Sukh Chain</option>
+                <option value="lake">Lake City</option>
+            </select>
+            <div *ngIf="yourArea.errors && (yourArea.touched || yourArea.dirty)" class="validation-error-text">
+                Area is required.
+            </div>
+        </div>
+        <div class="col-6 form-group">
+            <label for="referred">referred</label>
+            <select name="referred" [(ngModel)]="referredBy" class="form-control c-theme" id="referred" name="referred" #referred="ngModel">
+                <option value="">Select Your referrence</option>
+                <option value="{{ref.key}}" *ngFor="let ref of referenceMembers">{{ref.name}}</option>
+                <!-- <option value="fawadKhan">Fawad Khan</option>
+                <option value="imranMurtaza">Imran Murtaza</option>
+                <option value="naveedAhmed">Naveed Ahmed</option> -->
+            </select>
+        </div>
+        <div class="col-12 form-group" [ngClass]="{'has-error': address.errors && (address.touched || address.dirty) }">
+            <label for="address">Address</label>
+            <input type="text"
+                name="address"
+                id="address"
+                class="form-control"
+                #address="ngModel"
+                [(ngModel)]="addressLine"
+                placeholder="Address Line " 
+                required
+            />
+            <div *ngIf="address.errors && (address.touched || address.dirty)" class="validation-error-text">
+                Address is required.
+            </div>
+        </div>
+      </div>
+      <div class="error validation-error-text" *ngIf="signError">
+        <p>{{errorMessage}}</p>
+      </div>
+      <div class="login-btn-wrapper">
+          <button class="btn btn-primary btn-lg" type="submit" [disabled]="!joinForm.valid">
+              Join Now
+          </button>
+      </div>
+    </form>
+  </div>
+</section>

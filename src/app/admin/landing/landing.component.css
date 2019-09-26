@@ -1,0 +1,17 @@
+#admin{
+    padding: 30px;
+    min-height: 770px;
+}
+.scheduleDate{
+    margin-bottom: 30px;
+}
+.singleWashed{
+    padding: 20px;
+}
+.pendingPayment{
+    padding: 20px;
+    margin-bottom: 15px;
+}
+.pendingPayments{
+    margin-top: 50px;
+}

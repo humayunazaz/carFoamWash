@@ -1,0 +1,20 @@
+<section style="background: url('./assets/img/photogrid.jpg') center center repeat; background-size: cover;" class="bar background-white relative-positioned" id="home">
+  <div class="container">
+    <!-- Carousel Start-->
+    <div class="home-carousel">
+      <div class="dark-mask mask-primary"></div>
+      <div class="container">
+        <ngb-carousel>
+          <ng-template ngbSlide *ngFor="let hero of heroContent">
+            <div class="row">
+              <div class="col-md-12 text-center">
+                <h1>{{hero.label}}</h1>
+              </div>
+            </div>
+          </ng-template>
+        </ngb-carousel>
+      </div>
+    </div>
+    <!-- Carousel End-->
+  </div>
+</section>

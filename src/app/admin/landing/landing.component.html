@@ -1,0 +1,101 @@
+<section id="admin">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h3>Schedule Wash</h3>
+        <div class="scheduleDate">
+            <input id="event-date" type="text" class="form-control" name="event-date" [(ngModel)]="washedDate" ngbDatepicker #loraDate="ngbDatepicker" (focus)="loraDate.toggle()" (ngModelChange)="updateTheDate()" readonly>
+        </div>
+        <div class="singleWashed" *ngFor="let wash of washed">
+          <div class="row">
+            <div class="col-2">
+              <p>Contact: {{wash.contact}}</p>
+            </div>
+            <div class="col-2">
+              <p>Car type: {{wash.carType}}</p>
+            </div>
+            <div class="col-2">
+              <p>Wash type: {{wash.washType}}</p>
+            </div>
+            <div class="col-3">
+              <p>Time Slot: {{wash.time}}</p>
+            </div>
+            <div class="col-3">
+              <p>Address: {{wash.address}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="noSchedule" *ngIf="noWashed">
+          <p>No Washed Found.</p>
+        </div>
+      </div>
+      <div class="col-12 bookWash">
+        <div class="row">
+          <div class="col-12">
+            <h3>Book User Washed</h3>
+          </div>
+          <div class="col-6 form-group">
+            <label>User Id</label>
+            <input type="text" [ngModel]="userId" (ngModelChange)="updateUserAbout($event)" class="form-control c-theme" name="id">
+          </div>
+          <div class="col-6 form-group">
+            <label for="washType">Wash Type</label>
+            <select name="wash" [ngModel]="washType" class="form-control c-theme" id="wash" name="wash" (ngModelChange)="updateWashType($event)">
+              <option value="">Select Wash Type</option>
+              <option value="interior">Complete (Interior & Exterior)</option>
+              <option value="exterior">Exterior</option>
+            </select>
+          </div>
+          <div class="col-6 form-group">
+            <label>Wash Date</label>
+            <input id="event-date" type="text" class="form-control" name="event-date" [(ngModel)]="washDate" ngbDatepicker #startDate="ngbDatepicker" (focus)="startDate.toggle()" (ngModelChange)="saveTheDate()" readonly>
+          </div>
+          <div class="col-6 form-group">
+            <label for="washTime">Wash Time</label>
+            <select name="wash" [(ngModel)]="selectedTime" class="form-control c-theme" id="wash" name="wash">
+              <option value="">Select Wash Time</option>
+              <option *ngFor="let time of washTimes" value="{{time.slot}}" [disabled]="time.booking === timeSlotLimit">{{time.slot}}</option>
+            </select>
+          </div>
+          <div class="col-6 form-group" *ngIf="userAbout != undefined">
+            <label>Contact Number</label>
+            <input 
+              [(ngModel)]="userAbout.phone" 
+              class="form-control" 
+              type="text" 
+              name="phone"
+              [ngClass]="{disabled: pendingWash != null}" 
+            />
+          </div>
+          <div class="col-12 form-group" *ngIf="userAbout != undefined">
+            <label for="address">Address</label>
+            <input type="text"
+              name="address"
+              id="address"
+              class="form-control"
+              [(ngModel)]="userAbout.address"
+              placeholder="Address"
+              [ngClass]="{disabled: pendingWash != null}" 
+            />
+          </div>
+          <div class="col-12 login-btn-wrapper">
+            <button class="btn btn-primary btn-lg" type="button" (click)="scheduleWash()">
+              Schedule
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 pendingPayments">
+        <div class="row">
+          <div class="col-6 pendingPayment" *ngFor="let user of pendingUsers">
+            <div class="row">
+              <div class="col-sm-3">{{user.first}} - {{user.last}}</div>
+              <div class="col-sm-3">{{user.phone}}</div>
+              <div class="col-sm-6">{{user.address}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

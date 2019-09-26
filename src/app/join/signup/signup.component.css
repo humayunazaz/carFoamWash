@@ -1,0 +1,24 @@
+h3{
+   margin-bottom: 60px;
+   text-align: center;
+}
+.login-btn-wrapper{
+    text-align: center;
+    margin-top: 60px;
+}
+form{
+    width: 50%;
+    margin:auto;
+    margin-top: 40px;
+}
+.validation-error-text{
+    color: #dc4c4a;
+}
+section{
+    min-height: 750px;
+}
+@media (min-width:320px) and (max-width:567px) {
+    form{
+        width: 100%;
+    }
+}

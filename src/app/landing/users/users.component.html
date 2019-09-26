@@ -1,0 +1,30 @@
+<section class="bar background-pentagon no-mb" id="users">
+  <div class="container">
+    <div class="row showcase text-center" *ngIf="show">
+      <div class="col-md-3 col-sm-6">
+        <div class="item">
+          <div class="icon-outlined icon-sm icon-thin"><i class="fa fa-align-justify"></i></div>
+          <h4><span class="h1 counter" counto [step]="50" [countTo]="totalMembers" [countFrom]="0" [duration]="1" (countoChange)="members = $event">{{members}}</span><br> Members</h4>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <div class="item">
+          <div class="icon-outlined icon-sm icon-thin"><i class="fa fa-users"></i></div>
+          <h4><span class="h1 counter" counto [step]="50" [countTo]="totalUsers" [countFrom]="0" [duration]="1" (countoChange)="users = $event">{{users}}</span><br>Satisfied Clients</h4>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <div class="item">
+          <div class="icon-outlined icon-sm icon-thin"><i class="fa fa-copy"></i></div>
+          <h4><span class="h1 counter" counto [step]="50" [countTo]="totalCars" [countFrom]="0" [duration]="1" (countoChange)="cars = $event">{{cars}}</span><br>Total Cars Detailing</h4>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <div class="item">
+          <div class="icon-outlined icon-sm icon-thin"><i class="fa fa-font"></i></div>
+          <h4><span class="h1 counter" counto [step]="50" [countTo]="totalCarsWeek" [countFrom]="0" [duration]="1" (countoChange)="weekCars = $event">{{weekCars}}</span><br>Car detailied per week</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
