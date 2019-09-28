@@ -6,7 +6,6 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyBl7tpXIB4B0fjPfvKDl9QuNBZpXjJs7Yg",
     authDomain: "carfoamandwash.firebaseapp.com",
     databaseURL: "https://carfoamandwash.firebaseio.com",
     projectId: "carfoamandwash",
